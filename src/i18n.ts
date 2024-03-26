@@ -42,7 +42,8 @@ i18n
                     experiencia:"Experience",
                     estudios:"Studies",
                     habilidades:"Skills",
-                    textoHabilidades:"My main skill is my involvement, sometimes I can say that it is sick,They are a methodical, responsible person and eager to build a future for myself."
+                    textoHabilidades:"My main skill is my involvement, sometimes I can say that it is sick,They are a methodical, responsible person and eager to build a future for myself.",
+                    buscadorProyectos:"Search projects...",
                     
                     
                 }
@@ -79,7 +80,8 @@ i18n
                     experiencia:"Experiencia",
                     estudios:"Estudios",
                     habilidades:"Habilidades",
-                    textoHabilidades:"Mi principal habilidad es mi implicación en ocasiones puedo llegar a decir que es enfermizo,son una persona metodica, responsable y con muchas ganas de labrarme un futuro."
+                    textoHabilidades:"Mi principal habilidad es mi implicación en ocasiones puedo llegar a decir que es enfermizo,son una persona metodica, responsable y con muchas ganas de labrarme un futuro.",
+                    buscadorProyectos:"Buscador de proyectos...",
                 }
             },
         },
