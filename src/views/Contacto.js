@@ -8,6 +8,11 @@ const Contacto = () => {
         email: "",
         message: ""
     });
+    const [isValid, setIsValid] = useState({
+        name: true,
+        email: true,
+        message: true
+    });
     
     const inputNombreRef = useRef(null); // Ref para el input de nombre
 
@@ -21,6 +26,10 @@ const Contacto = () => {
         setFormData({
             ...formData,
             [name]: value
+        });
+        setIsValid({
+            ...isValid,
+            [name]: true // Al cambiar el valor del input, se restablece el estado de validación a verdadero
         });
     };
 
@@ -49,8 +58,9 @@ const Contacto = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
+                        aria-invalid={!isValid.name ? "true" : "false"} // Agrega aria-invalid según el estado de validación
                         ref={inputNombreRef} // Asigna la referencia al input de nombre
-                        style={{width: "100%", padding: "10px", borderRadius: "4px", border: "1px solid #ccc" }}
+                        style={{width: "100%", padding: "10px", borderRadius: "4px", border: `1px solid ${!isValid.name ? "red" : "#ccc"}` }} // Cambia el color del borde si el valor es inválido
                     />
                 </div>
                 <div style={{marginBottom: "15px" }}>
@@ -61,7 +71,8 @@ const Contacto = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        style={{ width: "100%", padding: "10px", borderRadius: "4px", border: "1px solid #ccc" }}
+                        aria-invalid={!isValid.email ? "true" : "false"} // Agrega aria-invalid según el estado de validación
+                        style={{ width: "100%", padding: "10px", borderRadius: "4px", border: `1px solid ${!isValid.email ? "red" : "#ccc"}` }} // Cambia el color del borde si el valor es inválido
                     />
                 </div>
                 <div style={{ marginBottom: "15px" }}>
@@ -71,8 +82,22 @@ const Contacto = () => {
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        style={{ width: "100%", padding: "10px", borderRadius: "4px", border: "1px solid #ccc" }}
+                        aria-invalid={!isValid.message ? "true" : "false"} // Agrega aria-invalid según el estado de validación
+                        style={{ width: "100%", padding: "10px", borderRadius: "4px", border: `1px solid ${!isValid.message ? "red" : "#ccc"}` }} // Cambia el color del borde si el valor es inválido
                     />
+                </div>
+                <div style={{ marginBottom: "15px" }}>
+                    <label>{t("select")}</label>
+                    <select
+                        name={t("select")}
+                        value={formData.selectOption}
+                        onChange={handleChange}
+                        required
+                        style={{ width: "100%", padding: "10px", borderRadius: "4px", border: `1px solid ${!isValid.message ? "red" : "#ccc"}` }}>
+                        <option value="option1">{t("opcion1")}</option>
+                        <option value="option2">{t("opcion2")}</option>
+                        <option value="option3">{t("opcion3")}</option>
+                    </select>
                 </div>
                 <button type="submit" style={{ backgroundColor: "#4CAF50", color: "white", padding: "14px 20px", margin: "8px 0", border: "none", borderRadius: "4px", cursor: "pointer", width: "100%" }}>
                     {t("enviar")}

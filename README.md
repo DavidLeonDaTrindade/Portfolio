@@ -13,3 +13,4 @@ En la sección de contacto uso el useState para mantener el estado que queremos.
 En el Footer hago uso del useEffect almacenando la variable de visitas en localStorage para conseguir persistencia y poder ir aumentando el contador, ya que de otra manera no conseguia aumentar la variable o lo que consegui es que no parara de aumentar sin interactuar con la pagina.
 En la sección de contacto combino el useEffect junto con el useRef para que cuando regargemos la pagina nos lleve directamente al input de nombre.
 En la sección de proyectos hacemos uso del useMemo para memorizar la lista de proyectos y asi poder hacer una busqueda eficiente, definimos una lista de proyectos con un nombre y enlaces y utilizamos el useMemo para memorizar la lista filtrada de proyectos basada en el termino de busqueda y por ultimo manejamos los cambios para actualizar el estado.
+Hemos traducido el placeholder de buscador de proyectos.

@@ -44,6 +44,14 @@ i18n
                     habilidades:"Skills",
                     textoHabilidades:"My main skill is my involvement, sometimes I can say that it is sick,They are a methodical, responsible person and eager to build a future for myself.",
                     buscadorProyectos:"Search projects...",
+                    summary:"Use the search engine to find the projects",
+                    nombreTabla:"Name",
+                    enlaceTabla:"Link",
+                    imagenTabla:"Image",
+                    select:"Select an option",
+                    opcion1:"I want to contact you.",
+                    opcion2:"Get in touch with me.",
+                    opcion3:"I like your work."
                     
                     
                 }
@@ -82,6 +90,14 @@ i18n
                     habilidades:"Habilidades",
                     textoHabilidades:"Mi principal habilidad es mi implicación en ocasiones puedo llegar a decir que es enfermizo,son una persona metodica, responsable y con muchas ganas de labrarme un futuro.",
                     buscadorProyectos:"Buscador de proyectos...",
+                    summary:"Utiliza el buscador para encontrar los proyectos",
+                    nombreTabla:"Nombre",
+                    enlaceTabla:"Enlace",
+                    imagenTabla:"Imagen",
+                    select:"Selecciona una opción",
+                    opcion1:"Quiero ponerme en contacto contigo.",
+                    opcion2:"Ponte en contacto conmigo.",
+                    opcion3:"Me gusta tu trabajo."
                 }
             },
         },
