@@ -9,12 +9,14 @@ import Servicios from "../views/Servicios";
 import Contacto from "../views/Contacto";
 import Footer from "../components/layout/Footer";
 import HeaderNav from "../components/layout/HeaderNav";
+import tailwind from "../css/tailwind.css";
 
 
 
 const MisRutas = () =>{
     return(
         <div>
+            
             <BrowserRouter>
                 <HeaderNav/>
                 <hr/>

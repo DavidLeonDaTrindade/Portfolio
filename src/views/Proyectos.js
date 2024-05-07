@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { LANGUAGES } from "../constants/langs.ts";
 import calmar from "../imagen/Captura.PNG";
@@ -28,30 +28,60 @@ const Proyectos = () => {
         setSearchTerm(e.target.value);
     };
 
+    // Al cargar el componente, verificar si hay un idioma almacenado en el almacenamiento local y establecerlo
+    useEffect(() => {
+        const savedLanguage = localStorage.getItem("language");
+        if (savedLanguage) {
+            i18n.changeLanguage(savedLanguage);
+        }
+    }, []);
+
+    // Función para cambiar el idioma y almacenarlo en el almacenamiento local
+    const changeLanguage = (language) => {
+        i18n.changeLanguage(language);
+        localStorage.setItem("language", language);
+    };
+
     return (
-        <div style={{ textAlign: "center" }}>
-            <h1 style={{ fontSize: "28px", fontWeight: "bold" }}>{t("proyectos")}</h1>
-            <input type="text" value={searchTerm} onChange={handleSearchChange} placeholder={t("buscadorProyectos")} />
-            <summary>{t("summary")}</summary>
-            <table style={{ margin: "0 auto", width: "80%" }}>
-                <caption style={{ fontSize: "20px", fontWeight: "bold" }}>{t("listaProyectos")}</caption>
+        <div className="text-center">
+            <h1 className="text-2xl font-bold">{t("proyectos")}</h1>
+            <label htmlFor="searchInput" className="block">{t("buscadorProyectos")}</label>
+            <input
+                id="searchInput"
+                type="text"
+                value={searchTerm}
+                onChange={handleSearchChange}
+                placeholder={t("buscadorProyectos")}
+                className="border border-gray-300 rounded-md p-2 mt-2 mb-4"
+            />
+            <table className="w-4/5 mx-auto">
+                <caption className="text-lg font-bold">{t("listaProyectos")}</caption>
                 <thead>
                     <tr>
-                        <th scope="col" style={{ width: "33%" }}>{t("nombreTabla")}</th>
-                        <th scope="col" style={{ width: "33%" }}>{t("enlaceTabla")}</th>
-                        <th scope="col" style={{ width: "33%" }}>{t("imagenTabla")}</th>
+                        <th className="w-1/3">{t("nombreTabla")}</th>
+                        <th className="w-1/3">{t("enlaceTabla")}</th>
+                        <th className="w-1/3">{t("imagenTabla")}</th>
                     </tr>
                 </thead>
                 <tbody>
                     {filteredProjects.map(project => (
                         <tr key={project.name}>
-                            <td scope="row">{project.name}</td>
-                            <td><a href={project.link} target="_blank">{project.link}</a></td>
-                            <td><img src={project.image} alt={project.name} style={{ width: '150px', height: '100px' }} /></td>
+                            <td>{project.name}</td>
+                            <td><a href={project.link} target="_blank" className="text-blue-500 underline">{project.link}</a></td>
+                            <td><img src={project.image} alt={project.name} className="mx-auto mt-2 w-32 h-auto" /></td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+
+            {/* Selector de idioma */}
+            <div className="mt-4">
+                {LANGUAGES.map((language) => (
+                    <button key={language.code} onClick={() => changeLanguage(language.code)} className="mr-2 px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300">
+                        {language.name}
+                    </button>
+                ))}
+            </div>
         </div>
     );
 };

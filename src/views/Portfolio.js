@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { LANGUAGES } from "../constants/langs.ts";
 import calmar from "../imagen/Captura.PNG";
 import rackcanarias from "../imagen/RackCanarias.png";
 import kiwoko from "../imagen/kiwoko.png";
+
 const Portfolio = () =>{
-        const { i18n, t} = useTranslation();
+    const { i18n, t } = useTranslation();
+
+    // Al cargar el componente, verificar si hay un idioma almacenado en el almacenamiento local y establecerlo
+    useEffect(() => {
+        const savedLanguage = localStorage.getItem("language");
+        if (savedLanguage) {
+            i18n.changeLanguage(savedLanguage);
+        }
+    }, []);
+
+    // Función para cambiar el idioma y almacenarlo en el almacenamiento local
+    const changeLanguage = (language) => {
+        i18n.changeLanguage(language);
+        localStorage.setItem("language", language);
+    };
+
     return (
         <div>
             <h1>{t("proyectos")}</h1>
@@ -40,7 +56,17 @@ const Portfolio = () =>{
                     <p style={{padding: "0 20px" }}>{t("textoImagen3")}</p>
                 </div>
             </div>
+
+            {/* Selector de idioma */}
+            <div>
+                {LANGUAGES.map((language) => (
+                    <button key={language.code} onClick={() => changeLanguage(language.code)}>
+                        {language.name}
+                    </button>
+                ))}
+            </div>
         </div>
-    )
-}
+    );
+};
+
 export default Portfolio;

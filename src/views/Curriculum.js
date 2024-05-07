@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { LANGUAGES } from "../constants/langs.ts";
 const Curriculum = () =>{
@@ -10,6 +11,13 @@ const Curriculum = () =>{
         education: "",
         skills: ""
     });
+    useEffect(() => {
+        // Al cargar la página, restaura el idioma seleccionado desde el localStorage
+        const selectedLanguage = localStorage.getItem("selectedLanguage");
+        if (selectedLanguage) {
+            i18n.changeLanguage(selectedLanguage);
+        }
+    }, []); // El efecto se ejecuta solo una vez al cargar la página
 
     const handleChange = (e) => {
         const { name, value } = e.target;

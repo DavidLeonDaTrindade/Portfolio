@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { LANGUAGES } from "../constants/langs.ts";
 
 const Contacto = () => {
-    const { t } = useTranslation();
+    const { i18n, t } = useTranslation();
     const [formData, setFormData] = useState({
         name: "",
         email: "",
-        message: ""
+        message: "",
+        selectOption: "option1" // Agregado para mantener el estado del select
     });
     const [isValid, setIsValid] = useState({
         name: true,
@@ -19,7 +21,13 @@ const Contacto = () => {
     useEffect(() => {
         // Al cargar la página, establece el foco en el input de nombre
         inputNombreRef.current.focus();
-    }, []); // El array de dependencias está vacío, por lo que el efecto se ejecuta solo una vez al cargar la página
+        
+        // Cargar idioma seleccionado del localStorage al cargar la página
+        const selectedLanguage = localStorage.getItem("selectedLanguage");
+        if (selectedLanguage) {
+            i18n.changeLanguage(selectedLanguage);
+        }
+    }, [i18n]); // Dependencia i18n para reaccionar a los cambios de idioma
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -35,24 +43,33 @@ const Contacto = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const { name, message, email } = formData;
+        const { name, message, email, selectOption } = formData;
         const correoDestino = "example@example.com";
-        const mensaje = `Hola ${name}. Se ha enviado satisfactoriamente el siguiente mensaje: ${message}. Nos pondremos en contacto contigo en el correo ${email} lo antes posible.`;
+        const mensaje = `Hola ${name}. Se ha enviado satisfactoriamente el siguiente mensaje: ${message}. Nos pondremos en contacto contigo en el correo ${email} lo antes posible. Opción seleccionada: ${selectOption}`;
         alert(mensaje);
         setFormData({
             name: "",
             email: "",
-            message: ""
+            message: "",
+            selectOption: "option1" // Reiniciar el estado del select
         });
     };
 
+    const onChangeLang = (event) => {
+        const selectedLanguage = event.target.value;
+        i18n.changeLanguage(selectedLanguage);
+        // Guardar el idioma seleccionado en el localStorage
+        localStorage.setItem("selectedLanguage", selectedLanguage);
+    };
+
     return (
-        <div style={{ backgroundColor: "#f2f2f2", padding: "20px", borderRadius: "8px", maxWidth: "400px", margin: "0 auto" }}>
-            <h1>{t("contacto")}</h1>
+        <div className="bg-gray-200 py-8 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto rounded-lg">
+            <h1 className="text-2xl font-semibold mb-4">{t("contacto")}</h1>
             <form onSubmit={handleSubmit}>
-                <div style={{ marginBottom: "15px" }}>
-                    <label>{t("nombreContacto")}</label>
+                <div className="mb-4">
+                    <label htmlFor="nombre" className="block text-gray-700">{t("nombreContacto")}</label>
                     <input
+                        id="nombre"
                         type="text"
                         name="name"
                         value={formData.name}
@@ -60,48 +77,65 @@ const Contacto = () => {
                         required
                         aria-invalid={!isValid.name ? "true" : "false"} // Agrega aria-invalid según el estado de validación
                         ref={inputNombreRef} // Asigna la referencia al input de nombre
-                        style={{width: "100%", padding: "10px", borderRadius: "4px", border: `1px solid ${!isValid.name ? "red" : "#ccc"}` }} // Cambia el color del borde si el valor es inválido
+                        className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${!isValid.name ? "border-red-500" : ""}`} // Cambia el color del borde si el valor es inválido
                     />
                 </div>
-                <div style={{marginBottom: "15px" }}>
-                    <label>Email</label>
+                <div className="mb-4">
+                    <label htmlFor="email" className="block text-gray-700">{t("email")}</label>
                     <input
+                        id="email"
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
                         required
                         aria-invalid={!isValid.email ? "true" : "false"} // Agrega aria-invalid según el estado de validación
-                        style={{ width: "100%", padding: "10px", borderRadius: "4px", border: `1px solid ${!isValid.email ? "red" : "#ccc"}` }} // Cambia el color del borde si el valor es inválido
+                        className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${!isValid.email ? "border-red-500" : ""}`} // Cambia el color del borde si el valor es inválido
                     />
                 </div>
-                <div style={{ marginBottom: "15px" }}>
-                    <label>{t("mensajeContacto")}</label>
+                <div className="mb-4">
+                    <label htmlFor="mensaje" className="block text-gray-700">{t("mensajeContacto")}</label>
                     <textarea
+                        id="mensaje"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
                         required
                         aria-invalid={!isValid.message ? "true" : "false"} // Agrega aria-invalid según el estado de validación
-                        style={{ width: "100%", padding: "10px", borderRadius: "4px", border: `1px solid ${!isValid.message ? "red" : "#ccc"}` }} // Cambia el color del borde si el valor es inválido
+                        className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${!isValid.message ? "border-red-500" : ""}`} // Cambia el color del borde si el valor es inválido
                     />
                 </div>
-                <div style={{ marginBottom: "15px" }}>
-                    <label>{t("select")}</label>
+                <div className="mb-4">
+                    <label htmlFor="select" className="block text-gray-700">{t("select")}</label>
                     <select
-                        name={t("select")}
+                        id="select"
+                        name="selectOption"
                         value={formData.selectOption}
                         onChange={handleChange}
                         required
-                        style={{ width: "100%", padding: "10px", borderRadius: "4px", border: `1px solid ${!isValid.message ? "red" : "#ccc"}` }}>
+                        className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${!isValid.message ? "border-red-500" : ""}`} // Cambia el color del borde si el valor es inválido
+                    >
                         <option value="option1">{t("opcion1")}</option>
                         <option value="option2">{t("opcion2")}</option>
                         <option value="option3">{t("opcion3")}</option>
                     </select>
                 </div>
-                <button type="submit" style={{ backgroundColor: "#4CAF50", color: "white", padding: "14px 20px", margin: "8px 0", border: "none", borderRadius: "4px", cursor: "pointer", width: "100%" }}>
-                    {t("enviar")}
-                </button>
+                <div className="mb-4">
+                    <label htmlFor="languageSelect" className="block text-gray-700">{t("selectLanguage")}</label>
+                    <select
+                        id="languageSelect"
+                        defaultValue={i18n.language}
+                        onChange={onChangeLang}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    >
+                        {LANGUAGES.map(({ code, label }) => (
+                            <option key={code} value={code}>
+                                {label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <button type="submit" className="bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600">{t("enviar")}</button>
             </form>
         </div>
     );

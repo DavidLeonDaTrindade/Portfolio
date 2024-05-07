@@ -14,3 +14,6 @@ En el Footer hago uso del useEffect almacenando la variable de visitas en localS
 En la sección de contacto combino el useEffect junto con el useRef para que cuando regargemos la pagina nos lleve directamente al input de nombre.
 En la sección de proyectos hacemos uso del useMemo para memorizar la lista de proyectos y asi poder hacer una busqueda eficiente, definimos una lista de proyectos con un nombre y enlaces y utilizamos el useMemo para memorizar la lista filtrada de proyectos basada en el termino de busqueda y por ultimo manejamos los cambios para actualizar el estado.
 Hemos traducido el placeholder de buscador de proyectos.
+En la pagina de contacto hemos añadido un boton con 3 posibles elecciones.
+En la pagina de proyectos hemos añadido una tabla con el caption el summary tambien hemos hecho uso de los col, row y de los % de las fotos para que se puedan visualizar mejor.
+Todas los nuevos elementos que he añadido han sido traducidos tan y como llevabamos haciendo en todo el portafolio. 
