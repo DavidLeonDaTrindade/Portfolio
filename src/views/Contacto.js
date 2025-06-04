@@ -63,7 +63,7 @@ const Contacto = () => {
     };
 
     return (
-        <div className="bg-gray-200 py-8 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto rounded-lg">
+        <div className="bg-white shadow-md py-8 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto rounded-lg">
             <h1 className="text-2xl font-semibold mb-4">{t("contacto")}</h1>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">

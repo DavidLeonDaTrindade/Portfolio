@@ -43,7 +43,7 @@ const Proyectos = () => {
     };
 
     return (
-        <div className="text-center">
+        <div className="container mx-auto px-4 py-8 text-center bg-white shadow-md rounded">
             <h1 className="text-2xl font-bold">{t("proyectos")}</h1>
             <label htmlFor="searchInput" className="block">{t("buscadorProyectos")}</label>
             <input

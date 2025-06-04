@@ -22,7 +22,7 @@ const HeaderNav = () => {
     }, []); // Este efecto se ejecuta solo una vez al montar el componente
 
     return (
-        <div className="bg-gray-800 text-white py-4 px-6">
+        <div className="bg-gradient-to-r from-blue-800 via-blue-900 to-gray-900 text-white py-4 px-6 shadow-md">
             <h1 className="text-2xl mb-4">{t("titleHeader")}</h1>
             <div className="flex items-center">
                 <label htmlFor="languageSelect" className="mr-4">Select language:</label>

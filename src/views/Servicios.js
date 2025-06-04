@@ -8,18 +8,28 @@ import react from "../imagen/react-logo.jpg";
 const Servicios = () => {
     const { t } = useTranslation();
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-            <div style={{ flex: 1, textAlign: 'center', maxWidth: '30%', height: '100%' }}>
-                <img src={html} alt="HTML y CSS" style={{ maxWidth: '100%', maxHeight: '100%' }} />
-                <p style={{ fontWeight: 'bold', fontSize: '16px', margin: "20px" }}>{t("descripcion1")}</p>
+        <div className="container mx-auto px-4 py-8">
+            <h1 className="text-2xl font-bold mb-6 text-center">{t("h1servicios")}</h1>
+            <div className="flex flex-col md:flex-row md:justify-between">
+                <div className="flex-1 text-center md:max-w-xs mb-8 md:mb-0">
+                    <img src={html} alt="HTML y CSS" className="mx-auto h-32 object-contain" />
+                    <p className="font-bold text-sm mt-4">{t("descripcion1")}</p>
+                </div>
+                <div className="flex-1 text-center md:max-w-xs mb-8 md:mb-0">
+                    <img src={java} alt="Java" className="mx-auto h-32 object-contain" />
+                    <p className="font-bold text-sm mt-4">{t("descripcion2")}</p>
+                </div>
+                <div className="flex-1 text-center md:max-w-xs">
+                    <img src={react} alt="React" className="mx-auto h-32 object-contain" />
+                    <p className="font-bold text-sm mt-4">{t("descripcion3")}</p>
+                </div>
             </div>
-            <div style={{ flex: 1, textAlign: 'center', maxWidth: '30%', height: '100%' }}>
-                <img src={java} alt="Java" style={{ maxWidth: '100%', maxHeight: '100%' }} />
-                <p style={{ fontWeight: 'bold', fontSize: '16px', margin: "20px" }}>{t("descripcion2")}</p>
-            </div>
-            <div style={{ flex: 1, textAlign: 'center', maxWidth: '30%', height: '100%' }}>
-                <img src={react} alt="React" style={{ maxWidth: '100%', maxHeight: '100%' }} />
-                <p style={{ fontWeight: 'bold', fontSize: '16px', margin: "20px" }}>{t("descripcion3")}</p>
+            <div className="mt-6 text-center">
+                {LANGUAGES.map((language) => (
+                    <button key={language.code} onClick={() => i18n.changeLanguage(language.code)} className="mr-2 px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300">
+                        {language.name}
+                    </button>
+                ))}
             </div>
         </div>
     )
