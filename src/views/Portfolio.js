@@ -23,44 +23,43 @@ const Portfolio = () =>{
     };
 
     return (
-        <div>
-            <h1>{t("proyectos")}</h1>
+        <div className="container mx-auto px-4 py-8">
+            <h1 className="text-2xl font-bold mb-6">{t("proyectos")}</h1>
 
             {/* Sección 1 */}
-            <div style={{ display: "flex", alignItems: "center" }}>
-                <div style={{ flex: 1 }}>
-                    <img src={calmar} alt="Foto 1" style={{ width: "100%" , marginLeft: "20px" }}/>
+            <div className="md:flex items-center mb-8">
+                <div className="md:w-1/2">
+                    <img src={calmar} alt="Foto 1" className="rounded shadow-md md:ml-5 w-full" />
                 </div>
-                <div style={{ flex: 1, padding: "0 20px" }}>
-                    <p style={{padding: "0 20px" }}>{t("textoImagen1")}
-                    </p>
+                <div className="md:w-1/2 md:pl-6 mt-4 md:mt-0">
+                    <p className="text-justify">{t("textoImagen1")}</p>
                 </div>
             </div>
 
             {/* Sección 2 */}
-            <div style={{ display: "flex", alignItems: "center" }}>
-                <div style={{ flex: 1, padding: "0 20px" }}>
-                    <p style={{padding: "0 20px" }}>{t("textoImagen2")}</p>
+            <div className="md:flex items-center mb-8">
+                <div className="md:w-1/2 md:pr-6 mb-4 md:mb-0">
+                    <p className="text-justify">{t("textoImagen2")}</p>
                 </div>
-                <div style={{ flex: 1 }}>
-                    <img src={rackcanarias} alt="Foto 2" style={{ width: "100%", marginRight:"20px" }} />
+                <div className="md:w-1/2">
+                    <img src={rackcanarias} alt="Foto 2" className="rounded shadow-md md:mr-5 w-full" />
                 </div>
             </div>
 
             {/* Sección 3 */}
-            <div style={{ display: "flex", alignItems: "center" }}>
-                <div style={{ flex: 1, padding: "0 20px" }}>
-                    <img src={kiwoko } alt="Foto 3" style={{ width: "100%" }} />
+            <div className="md:flex items-center mb-8">
+                <div className="md:w-1/2">
+                    <img src={kiwoko} alt="Foto 3" className="rounded shadow-md md:ml-5 w-full" />
                 </div>
-                <div style={{ flex: 1 }}>
-                    <p style={{padding: "0 20px" }}>{t("textoImagen3")}</p>
+                <div className="md:w-1/2 md:pl-6 mt-4 md:mt-0">
+                    <p className="text-justify">{t("textoImagen3")}</p>
                 </div>
             </div>
 
             {/* Selector de idioma */}
-            <div>
+            <div className="mt-6">
                 {LANGUAGES.map((language) => (
-                    <button key={language.code} onClick={() => changeLanguage(language.code)}>
+                    <button key={language.code} onClick={() => changeLanguage(language.code)} className="mr-2 px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300">
                         {language.name}
                     </button>
                 ))}

@@ -15,7 +15,7 @@ const Footer = () => {
     }, []); // El array de dependencias está vacío, por lo que el efecto se ejecuta solo una vez al montar el componente
 
     return (
-        <div className="bg-gray-800 text-white py-4 px-6">
+        <div className="bg-gradient-to-r from-gray-900 via-blue-900 to-blue-800 text-white py-4 px-6 mt-8">
             <h1 className="text-2xl mb-4">{t("footer")}</h1>
             <p className="mb-4">La página ha sido visitada {visitCount} veces.</p>
             <div>

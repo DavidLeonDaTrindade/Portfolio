@@ -40,7 +40,7 @@ const Curriculum = () =>{
     };
 
     return (
-        <div style={{ backgroundColor: "#f2f2f2", padding: "20px", borderRadius: "8px", maxWidth: "450px", margin: "0 auto",textAlign:"left" }}>
+        <div className="bg-white shadow-md p-6 rounded max-w-lg mx-auto text-left">
             <h1 >{t("curriculum")}</h1>
             <form onSubmit={handleSubmit}>
                 <p>

@@ -23,7 +23,7 @@ const Inicio = () => {
     };
 
     return (
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 py-8 bg-white shadow-md rounded">
             <h1 className="text-5xl font-bold mb-6">{t("inicio")}</h1>
             <p className="text-lg">{t("pInicio")}</p>
 
